@@ -13,7 +13,10 @@ then
 	exit 1
 fi
 
-sudo umount $2
-sudo mkfs.vfat $21
+echo "Disassembling USB"
+sudo umount $2 > /dev/null
+echo "Formatting"
+sudo mkfs.vfat $21 > /dev/null
 
+echo "Extracting ISO to USB"
 sudo dd if=$1 of=$2 status=progress && sync
