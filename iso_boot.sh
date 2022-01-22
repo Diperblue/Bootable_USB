@@ -1,7 +1,8 @@
 #!/bin/bash
 
 HELP="./iso_boot.sh <dir_iso> <dir_usb>\n
-		example:\n\t ./iso_boot.sh /home/user/Download/arch-linux.iso /dev/sdc"
+		example:\n\t ./iso_boot.sh kali-linux.iso /dev/sdc"
+DIR=`pwd`
 
 if [[ -z $1 ]]
 then
@@ -19,4 +20,4 @@ echo "Formatting"
 sudo mkfs.vfat $21 > /dev/null
 
 echo "Extracting ISO to USB"
-sudo dd if=$1 of=$2 status=progress && sync
+sudo dd if=$DIR/$1 of=$2 status=progress && sync
