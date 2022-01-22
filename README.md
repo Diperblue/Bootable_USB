@@ -9,5 +9,5 @@ chmod +x ./iso_boot.sh
 ## HOW TO USE?
 ```
 ./iso_boot.sh <dir_iso> <dir_usb>
-Example: ./iso_boot.sh /home/user/Download/arch-linux.iso /dev/sdc
+Example: ./iso_boot.sh arch-linux.iso /dev/sdc
 ```
