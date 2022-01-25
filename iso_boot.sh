@@ -2,7 +2,6 @@
 
 HELP="./iso_boot.sh <dir_iso> <dir_usb>\n
 		example:\n\t ./iso_boot.sh kali-linux.iso /dev/sdc"
-DIR=`pwd`
 
 if [[ -z $1 ]]
 then
@@ -14,10 +13,18 @@ then
 	exit 1
 fi
 
+if [[ `id -u` != "0" ]]
+then
+	echo " Run this program as root!"
+	exit 1
+fi
+
 echo "Disassembling USB"
 sudo umount $2 > /dev/null
 echo "Formatting"
-sudo mkfs.vfat $21 > /dev/null
+t=`sudo mkfs.vfat $21 > /dev/null`
+echo "Successfully formatted"
+
 
 echo "Extracting ISO to USB"
-sudo dd if=$DIR/$1 of=$2 status=progress && sync
+sudo dd if=$1 of=$2 status=progress && sync
